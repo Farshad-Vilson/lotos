@@ -1,0 +1,19 @@
+{
+  "name": "lotus-porcelain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "وب‌سایت چینی لوتوس — تولیدکنندهٔ قوری و ظروف چینی در اصفهان",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "start": "node serve.mjs",
+    "dev": "node src/build.mjs && node serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "playwright-core": "^1.63.0"
+  }
+}

@@ -1,0 +1,16 @@
+import { createRequire } from 'node:module';
+const require = createRequire('/home/user/lotos/.dev/');
+const { chromium } = require('playwright-core');
+process.env.LD_LIBRARY_PATH='/tmp/al2023/lib';
+const b=await chromium.launch({executablePath:'/tmp/chromium',args:['--no-sandbox','--disable-dev-shm-usage','--hide-scrollbars','--allow-file-access-from-files']});
+const ctx=await b.newContext({viewport:{width:2100,height:1200},deviceScaleFactor:1});
+const p=await ctx.newPage();
+await p.goto('file:///home/user/lotos/design/overview.html',{waitUntil:'load'});
+await p.evaluate(()=>document.fonts.ready);
+await p.waitForTimeout(2000);
+const bad=await p.evaluate(()=>[...document.images].filter(i=>i.naturalWidth===0).map(i=>i.getAttribute('src')));
+const n=await p.evaluate(()=>document.images.length);
+console.log(bad.length?'✗ '+bad.join(', '):'✓ همهٔ '+n+' تصویر بارگذاری شد');
+await p.screenshot({path:'/home/user/lotos/design/overview.png',fullPage:true});
+console.log('ارتفاع:', await p.evaluate(()=>document.body.scrollHeight),'px');
+await b.close();
