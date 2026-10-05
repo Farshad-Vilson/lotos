@@ -1,0 +1,17 @@
+# خروجی ساخت‌شده
+site/
+
+# ابزار توسعه و پوشه‌های موقت
+.dev/node_modules/
+.dev/package-lock.json
+.dev/package.json
+specimen/
+.venv/
+design/
+
+# بستهٔ دانلود (در سندباکس می‌ماند)
+lotus-website.zip
+
+# سیستم
+.DS_Store
+Thumbs.db
